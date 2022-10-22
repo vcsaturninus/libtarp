@@ -50,6 +50,11 @@ MODS_SUBDIRS    := $(shell find $(TARP_MODS_PATH) -mindepth 1 -maxdepth 1 -type 
 # individual builds at the command line
 MODS_TARGETS    := $(foreach mod, $(MODS_SUBDIRS),$(lastword $(subst /, ,$(mod))))
 
+#
+# pass VALGRIND=y at the command line to run output tests binary
+# through valgrind
+VALGRIND := $(filter y,$(VALGRIND))
+
 export PROJECT_ROOT      
 export STAGING_DIR       
 export STAGING_HEADERS  
@@ -59,7 +64,7 @@ export TARP_MODS_PATH
 export TARP_COMMON_PATH  
 export MODS_SUBDIRS
 export CPPFLAGS
-
+export VALGRIND
 
 #$(info TARP_TOPDIR is $(TARP_TOPDIR))
 #$(info TARP_MODS_PATH is $(TARP_MODS_PATH))
